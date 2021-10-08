@@ -1,2 +1,2 @@
-# docker-compose-php-mysql
+# docker-laravel-mysql
 test
