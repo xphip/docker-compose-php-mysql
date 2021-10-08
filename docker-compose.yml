@@ -1,0 +1,35 @@
+version: '3'
+
+services:
+    db:
+        image: mysql
+        command: --default-authentication-plugin=mysql_native_password
+        restart: always
+        environment:
+            - MYSQL_ALLOW_EMPTY_PASSWORD=no
+            - MYSQL_PASSWORD=
+            - MYSQL_ROOT_PASSWORD=
+        volumes:
+            - /var/lib/mysql:/var/lib/mysql
+        ports:
+            - "3306:3306"
+    app:
+        build:
+            context: .
+            dockerfile: .docker/php/Dockerfile
+        image: app
+        env_file:
+            - .env
+        environment:
+            - DB_HOST=localhost
+            - DB_DATABASE=laravel
+            - DB_USERNAME=root
+            - DB_PASSWORD=
+        depends_on:
+            - db
+        volumes:
+            - ./:/app
+        ports:
+            - "0.0.0.0:80:80/tcp"
+            - "0.0.0.0:443:443/tcp"
+        # privileged: true # Privileged mode could be required to run this container under Windows
