@@ -15,7 +15,7 @@ RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" &&
     mv composer.phar /usr/local/bin/composer && \
     test -f /usr/local/bin/composer || exit 1
 
-RUN useradd ubuntu; \
+RUN useradd -rm -d /home/ubuntu -s /bin/bash -g root -G sudo -u 1001 ubuntu; \
     mkdir /app; \
     chown -R ubuntu /app;
 
