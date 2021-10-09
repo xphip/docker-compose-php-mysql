@@ -17,7 +17,7 @@ install_laravel() {
   mkdir "${LARAVEL_TEMP_DIR}" &&
   curl -sL -o "${LARAVEL_TEMP_DIR}/${LARAVEL_TEMP_FILENAME}" "${LARAVEL_URL}" &&
   unzip -d "${LARAVEL_TEMP_DIR}" "${LARAVEL_TEMP_DIR}/${LARAVEL_TEMP_FILENAME}" || exit 1
-  mv -t "/app/" "${LARAVEL_TEMP_DIR}/laravel-${LARAVEL_VERSION}/".* "${LARAVEL_TEMP_DIR}/laravel-${LARAVEL_VERSION}/"*
+  mv -t "/app" "${LARAVEL_TEMP_DIR}/laravel-${LARAVEL_VERSION}/".* "${LARAVEL_TEMP_DIR}/laravel-${LARAVEL_VERSION}/"*
   rm -rf "${LARAVEL_TEMP_DIR}"
 }
 
