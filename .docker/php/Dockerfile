@@ -1,10 +1,16 @@
 FROM ubuntu:20.04
 ENV DEBIAN_FRONTEND=noninteractive
 
+
 RUN apt update && apt install -y --no-install-recommends \
-    sudo curl unzip ca-certificates openssl php7.4 php7.4-cli php7.4-common php7.4-curl \
+    sudo curl unzip ca-certificates openssl
+
+RUN apt install -y php7.4 php7.4-cli php7.4-common php7.4-curl \
     php7.4-json php7.4-mbstring php7.4-mysql php7.4-xml php7.4-zip \
     php7.4-odbc php7.4-sqlite3 php7.4-gd php7.4-fpm php7.4-bcmath php7.4-bz2 php7.4-common
+
+RUN curl -fsSL https://deb.nodesource.com/setup_14.x | bash - && \
+    apt install -y nodejs
 
 COPY ./.docker/php/app-entrypoint.sh /usr/local/bin/
 RUN chmod +x /usr/local/bin/app-entrypoint.sh
